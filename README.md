@@ -1,27 +1,43 @@
-# Retail-Customer-Classification-Modelling
- Classification models for predicting customer outcomes in an unbalanced classification setting, with outcomes dependent on customer demographics (age, post_code, gender) as well shopping frequencies and average spends by department etc.
- 
-### PURPOSE OF PROJECT: 
-- The overarching purpose of these models (this project) is to determine why some loyalty customers have chosen to opt into email marketing and others have chosen to opt out. The data shows that those customers who opt in have higher average spends, thus it is important to determine whether customers who are already spending more choose to opt in or whether opting in results in a higher average spend. To determine this, I construct various data features which capture demographics of customers and utilise various classification models to determine outcomes based off the input demographics / data features. A desired takeaways is to understand what features underpin each group and inform decisions on how to influence customers to opt into email marketing.
+Customer Classification for Email Marketing Opt-In Prediction
+This repository presents a comprehensive analysis using classification models to predict customer outcomes in an imbalanced setting, specifically focusing on customer decisions regarding email marketing opt-in. The project delves into understanding the factors that drive customers to opt into email marketing versus opting out. The analysis takes into account a range of customer demographics, shopping behaviors, and spending patterns across various departments.
 
-#### THE DATA:
-- Original data is 52K entries of sales data across 12+ departments and several hundred unique customers with unique individual characteristics: post code, age, gender, shopping frequency and average spend across different departments. The data ranges from 2019 to early 2021 (~ 2Y )
+Project Objective
+The main goal of this project is to uncover the underlying reasons behind customer choices regarding email marketing opt-in. By leveraging a dataset containing over 52,000 sales entries spanning multiple departments and several customer attributes (age, post code, gender, shopping frequency, and departmental spending), the project aims to answer whether customers who opt into email marketing already exhibit higher spending habits or if the opt-in decision leads to increased spending. To achieve this, a series of informative features are engineered from the data, capturing diverse aspects of customer demographics and behavior. Classification models are then employed to predict outcomes based on these features, offering insights into the key drivers influencing customers to opt in.
 
-#### PROJECT FLOW:
-After initial data exploration and data cleaning, I create a variety of features for the classification models:
-- Customer Duration (Time between first and last transactions)
-- One-Hot Encode: post code data by customer, customer gender, and department sales frequencies by customer
-- Standardise these variables without mean (Ex. post-code) to preserve the sparse matrix nature of the data + (the age variable)
+Data Overview
+The dataset encompasses sales data from a span of two years (2019 to early 2021) and includes transaction records across multiple departments. Each customer is characterized by unique attributes such as post code, age, gender, shopping frequency, and average spending across different departments.
 
-A severe class imbalance problem was present between customers who opted into email marketing (majority class) vs those who didn't (minority class). To remedy this, I upscaled the minority class with replacement to balance the two classes
-- Also tried downscaling the majority class in a separate iteration and found the former method to be superior
+Project Workflow
+The project follows a structured workflow, beginning with data exploration and cleaning. Key stages of the workflow are as follows:
 
-I first run the following models before tuning and compare performance (accuracy) across the average of (5) cross validations on the training data:
-- Naive Bayes (baseline measurement)
-- Logistic Regression
-- Decision Tree Classifier
-- Random Forest Classifier
-- K-nearest neighbors
+Feature Engineering:
+
+Creation of Customer Duration: Time interval between the first and last transactions.
+One-Hot Encoding: Transformation of post code data, customer gender, and department sales frequencies into binary indicators.
+Standardization of Variables: Standardization applied to specific variables, such as post code and age, while preserving sparsity.
+Class Imbalance Handling:
+
+The initial dataset exhibited a significant class imbalance between customers opting into email marketing (majority class) and those opting out (minority class).
+To address this issue, the minority class was oversampled with replacement to achieve a balanced representation.
+An alternative approach involving downsampling the majority class was also tested but yielded inferior results.
+Model Selection and Comparison:
+
+A range of classification models were selected for initial evaluation:
+Naive Bayes (baseline)
+Logistic Regression
+Decision Tree Classifier
+Random Forest Classifier
+K-nearest Neighbors
+Support Vector Classifier
+XGBoost Classifier
+Soft & Hard Voting Classifiers
+Model performance was assessed through cross-validation (5 folds) on the training data, primarily using accuracy as the evaluation metric.
+Model Tuning and Selection:
+
+The Support Vector Classifier emerged as the top performer with an accuracy of 90% on the training data and approximately 96% on the test data.
+Hyperparameter tuning was conducted to optimize the model's performance further.
+Conclusion
+This project provides valuable insights into customer behavior related to email marketing opt-in decisions. By employing advanced classification techniques, the analysis sheds light on the factors driving customers to opt in or out of email marketing. The final tuned Support Vector Classifier achieved an impressive accuracy level, underscoring its effectiveness in predicting customer outcomes in this context.
 - Support Vector Classifier
 - XGBoost Classifier
 - Soft & Hard Voting Classifiers
